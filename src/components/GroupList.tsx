@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Table } from 'antd';
 import { Link } from 'react-router-dom';
 import { GroupData } from '../database/Group.ts';
+import { truncateDescription } from '../utils/truncate.ts';
 
 interface GroupListProps {
   groups: GroupData[];
@@ -23,11 +24,13 @@ const GroupList: React.FC<GroupListProps> = ({ groups, onEdit, onDelete }) => {
       title: 'Description',
       dataIndex: 'description',
       key: 'description',
+      render: (text: string) => truncateDescription(text),
     },
     {
       title: 'Created At',
       dataIndex: 'createdAt',
       key: 'createdAt',
+      render: (text: string) => new Date(text).toLocaleString(),
     },
     {
       title: 'Action',
