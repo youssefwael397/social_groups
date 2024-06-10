@@ -1,4 +1,3 @@
-// src/components/PostList.tsx
 import React from 'react';
 import { List, Button } from 'antd';
 import { PostData } from '../database/Post';
@@ -26,10 +25,10 @@ const PostList: React.FC<PostListProps> = ({ posts, onEdit, onDelete }) => {
           ]}
         >
           <List.Item.Meta
-            title={post.content}
+            title={post.title}
             description={`Created at: ${new Date(
               post.createdAt
-            ).toLocaleString()}`}
+            ).toLocaleString()} - ${post.content}`}
           />
         </List.Item>
       )}

@@ -1,4 +1,3 @@
-// src/components/GroupDetail.tsx
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { GroupData, Group } from '../database/Group';
@@ -20,24 +19,27 @@ const GroupDetail: React.FC = () => {
     return <div>Group not found!</div>;
   }
 
-  const handleAddPost = (content: string) => {
+  const handleAddPost = (title: string, content: string) => {
     const groupInstance = new Group(group.name, group.description);
     groupInstance.id = group.id;
     groupInstance.createdAt = group.createdAt;
     groupInstance.posts = group.posts;
 
-    groupInstance.addPost(content);
+    groupInstance.addPost(title, content);
     setGroup(Group.findGroupById(group.id));
   };
 
-  const handleEditPost = (updatedContent: string) => {
+  const handleEditPost = (updatedTitle: string, updatedContent: string) => {
     if (editingPost) {
       const groupInstance = new Group(group.name, group.description);
       groupInstance.id = group.id;
       groupInstance.createdAt = group.createdAt;
       groupInstance.posts = group.posts;
 
-      groupInstance.updatePost(editingPost.id, { content: updatedContent });
+      groupInstance.updatePost(editingPost.id, {
+        title: updatedTitle,
+        content: updatedContent,
+      });
       setGroup(Group.findGroupById(group.id));
       setEditingPost(null);
       setPostModalVisible(false);

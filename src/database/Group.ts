@@ -17,22 +17,20 @@ export class Group {
   posts: PostData[];
 
   constructor(name: string, description: string) {
-    this.id = uuidv4(); // Unique identifier using uuid
+    this.id = uuidv4();
     this.name = name;
     this.description = description;
     this.createdAt = new Date();
     this.posts = [];
   }
 
-  // Add a post to the group
-  addPost(content: string): PostData {
-    const post = new Post(content);
+  addPost(title: string, content: string): PostData {
+    const post = new Post(title, content);
     this.posts.push(post);
     this.saveToLocalStorage();
     return post;
   }
 
-  // Update a post in the group
   updatePost(postId: string, updatedPost: Partial<PostData>): boolean {
     const postIndex = this.posts.findIndex((post) => post.id === postId);
     if (postIndex !== -1) {
@@ -43,7 +41,6 @@ export class Group {
     return false;
   }
 
-  // Delete a post from the group
   deletePost(postId: string): boolean {
     const initialLength = this.posts.length;
     this.posts = this.posts.filter((post) => post.id !== postId);
@@ -54,7 +51,6 @@ export class Group {
     return false;
   }
 
-  // Save group to localStorage
   saveToLocalStorage() {
     const groups: GroupData[] = JSON.parse(
       localStorage.getItem('groups') || '[]'
@@ -70,13 +66,11 @@ export class Group {
     localStorage.setItem('groups', JSON.stringify(groups));
   }
 
-  // Fetch all groups from localStorage
   static getAllGroups(): GroupData[] {
     const storedData = localStorage.getItem('groups');
     return storedData ? JSON.parse(storedData) : [];
   }
 
-  // Find group by ID
   static findGroupById(groupId: string): GroupData | undefined {
     const storedData = localStorage.getItem('groups');
     if (storedData) {
@@ -86,7 +80,6 @@ export class Group {
     return undefined;
   }
 
-  // Update group in localStorage by ID
   static updateGroupById(
     groupId: string,
     updatedGroup: Partial<GroupData>
@@ -104,7 +97,6 @@ export class Group {
     return false;
   }
 
-  // Delete group from localStorage by ID
   static deleteGroupById(groupId: string) {
     let storedData = localStorage.getItem('groups');
     if (storedData) {

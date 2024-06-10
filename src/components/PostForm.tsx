@@ -1,21 +1,27 @@
-// src/components/PostForm.tsx
 import React from 'react';
 import { Form, Input, Button } from 'antd';
 
 interface PostFormProps {
-  onSubmit: (content: string) => void;
+  onSubmit: (title: string, content: string) => void;
 }
 
 const PostForm: React.FC<PostFormProps> = ({ onSubmit }) => {
   const [form] = Form.useForm();
 
-  const onFinish = (values: { content: string }) => {
-    onSubmit(values.content);
+  const onFinish = (values: { title: string; content: string }) => {
+    onSubmit(values.title, values.content);
     form.resetFields();
   };
 
   return (
     <Form form={form} layout="vertical" onFinish={onFinish}>
+      <Form.Item
+        label="Title"
+        name="title"
+        rules={[{ required: true, message: 'Please enter post title' }]}
+      >
+        <Input />
+      </Form.Item>
       <Form.Item
         label="Content"
         name="content"
