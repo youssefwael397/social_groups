@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Input, Button } from 'antd';
-import { GroupData } from '../database/Group.ts';
+import { GroupData } from '../database/Group';
 
 interface GroupEditProps {
   group: GroupData;

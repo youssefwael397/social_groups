@@ -1,7 +1,7 @@
 // src/components/PostEdit.tsx
 import React from 'react';
 import { Form, Input, Button } from 'antd';
-import { PostData } from '../database/Post.ts';
+import { PostData } from '../database/Post';
 
 interface PostEditProps {
   post: PostData;

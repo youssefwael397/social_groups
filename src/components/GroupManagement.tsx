@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'antd';
-import GroupForm from './GroupForm.tsx';
-import GroupEdit from './GroupEdit.tsx';
-import GroupList from './GroupList.tsx';
-import { GroupData, Group } from '../database/Group.ts';
+import GroupForm from './GroupForm';
+import GroupEdit from './GroupEdit';
+import GroupList from './GroupList';
+import { GroupData, Group } from '../database/Group';
 
 const GroupManagement: React.FC = () => {
   const [groups, setGroups] = useState<GroupData[]>([]);

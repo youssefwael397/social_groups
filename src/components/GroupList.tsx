@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, Table } from 'antd';
 import { Link } from 'react-router-dom';
-import { GroupData } from '../database/Group.ts';
-import { truncateDescription } from '../utils/truncate.ts';
+import { GroupData } from '../database/Group';
+import { truncateDescription } from '../utils/truncate';
 
 interface GroupListProps {
   groups: GroupData[];

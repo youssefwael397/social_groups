@@ -1,7 +1,7 @@
 // src/components/PostList.tsx
 import React from 'react';
 import { List, Button } from 'antd';
-import { PostData } from '../database/Post.ts';
+import { PostData } from '../database/Post';
 
 interface PostListProps {
   posts: PostData[];

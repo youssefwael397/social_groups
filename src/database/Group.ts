@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { Post, PostData } from './Post.ts';
+import { Post, PostData } from './Post';
 
 export interface GroupData {
   id: string;

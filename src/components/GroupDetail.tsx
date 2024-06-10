@@ -1,11 +1,11 @@
 // src/components/GroupDetail.tsx
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { GroupData, Group } from '../database/Group.ts';
-import PostList from './PostList.tsx';
-import PostForm from './PostForm.tsx';
-import PostEdit from './PostEdit.tsx';
-import { PostData } from '../database/Post.ts';
+import { GroupData, Group } from '../database/Group';
+import PostList from './PostList';
+import PostForm from './PostForm';
+import PostEdit from './PostEdit';
+import { PostData } from '../database/Post';
 import { Modal, Button } from 'antd';
 
 const GroupDetail: React.FC = () => {

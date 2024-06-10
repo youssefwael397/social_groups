@@ -3,8 +3,8 @@ import { Container } from 'react-bootstrap'; // Import Container from react-boot
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import './App.css'; // Import your custom CSS file
-import GroupManagement from './components/GroupManagement.tsx';
-import GroupDetail from './components/GroupDetail.tsx';
+import GroupManagement from './components/GroupManagement';
+import GroupDetail from './components/GroupDetail';
 
 const App: React.FC = () => {
   return (
