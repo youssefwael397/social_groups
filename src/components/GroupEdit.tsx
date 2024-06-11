@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Form, Input, Button } from 'antd';
 import { GroupData } from '../database/Group';
 
@@ -14,6 +14,11 @@ const GroupEdit: React.FC<GroupEditProps> = ({ group, onSubmit }) => {
     onSubmit(values);
   };
 
+  // Set initial values when component is mounted
+  useEffect(() => {
+    form.setFieldsValue(group);
+  }, [group, form]);
+
   return (
     <Form
       form={form}
@@ -26,17 +31,21 @@ const GroupEdit: React.FC<GroupEditProps> = ({ group, onSubmit }) => {
         name="name"
         rules={[{ required: true, message: 'Please enter group name' }]}
       >
-        <Input />
+        <Input className="text_color" />
       </Form.Item>
       <Form.Item
         label="Description"
         name="description"
         rules={[{ required: true, message: 'Please enter description' }]}
       >
-        <Input.TextArea />
+        <Input.TextArea className="text_color" />
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button
+          type="primary"
+          htmlType="submit"
+          className="bg_main py-3 px-4 fs-6 d-flex justify-content-center mx-auto"
+        >
           Update
         </Button>
       </Form.Item>

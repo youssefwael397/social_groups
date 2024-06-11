@@ -4,6 +4,8 @@ import GroupForm from './GroupForm';
 import GroupEdit from './GroupEdit';
 import GroupList from './GroupList';
 import { GroupData, Group } from '../database/Group';
+import Lottie from 'react-lottie-player';
+import emptyAnimation from '../assets/no-data.json';
 
 const GroupManagement: React.FC = () => {
   const [groups, setGroups] = useState<GroupData[]>([]);
@@ -53,15 +55,28 @@ const GroupManagement: React.FC = () => {
     setGroups(groups.filter((group) => group.id !== groupId));
   };
 
+  // Function to handle modal close and reset state
+  const handleCloseModal = () => {
+    setVisible(false);
+    setEditGroup(null);
+  };
+
   return (
-    <div>
-      <Button className='mb-2' type="primary" onClick={() => setVisible(true)}>
+    <div className="my-3">
+      <Button
+        className="bg_main fs-6 py-3 px-4 d-flex justify-content-center mx-auto"
+        type="primary"
+        onClick={() => {
+          setEditGroup(null);
+          setVisible(true);
+        }}
+      >
         Create Group
       </Button>
       <Modal
-        visible={visible}
+        open={visible}
         title={editGroup ? 'Edit Group' : 'Create Group'}
-        onCancel={() => setVisible(false)}
+        onCancel={handleCloseModal}
         footer={null}
       >
         {editGroup ? (
@@ -70,9 +85,24 @@ const GroupManagement: React.FC = () => {
           <GroupForm onSubmit={handleCreate} />
         )}
       </Modal>
-      <GroupList groups={groups} onEdit={handleEdit} onDelete={handleDelete} />
+      {groups.length === 0 ? (
+        <div className="d-flex justify-content-center align-items-center">
+          <Lottie
+            loop
+            animationData={emptyAnimation}
+            play
+            style={{ width: 300, height: 300 }}
+          />
+        </div>
+      ) : (
+        <GroupList
+          groups={groups}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+        />
+      )}
     </div>
-  );      
+  );
 };
 
 export default GroupManagement;

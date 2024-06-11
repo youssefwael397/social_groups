@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Form, Input, Button } from 'antd';
 
 interface PostFormProps {
@@ -13,6 +13,11 @@ const PostForm: React.FC<PostFormProps> = ({ onSubmit }) => {
     form.resetFields();
   };
 
+  // Clear form fields when component is mounted
+  useEffect(() => {
+    form.resetFields();
+  }, [form]);
+
   return (
     <Form form={form} layout="vertical" onFinish={onFinish}>
       <Form.Item
@@ -20,17 +25,21 @@ const PostForm: React.FC<PostFormProps> = ({ onSubmit }) => {
         name="title"
         rules={[{ required: true, message: 'Please enter post title' }]}
       >
-        <Input />
+        <Input className="text_color" />
       </Form.Item>
       <Form.Item
         label="Content"
         name="content"
         rules={[{ required: true, message: 'Please enter post content' }]}
       >
-        <Input.TextArea />
+        <Input.TextArea className="text_color" />
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button
+          type="primary"
+          htmlType="submit"
+          className="bg_main py-3 px-4 fs-6 d-flex justify-content-center mx-auto"
+        >
           Submit
         </Button>
       </Form.Item>

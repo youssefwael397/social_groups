@@ -1,0 +1,20 @@
+.group{
+    box-shadow: 0px 15px 55px rgba(34, 34, 34, 0.15);
+}
+
+.text_color{
+    color: #666666;
+}
+
+.main_color{
+    color: #5e6fb5;
+}
+
+.bg_main{
+    background-color: #5e6fb5 !important;
+}
+
+:where(.css-dev-only-do-not-override-3rel02).ant-modal .ant-modal-title{
+    text-align: center;
+    font-size: 20px;
+}

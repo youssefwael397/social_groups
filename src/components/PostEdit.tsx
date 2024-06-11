@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Form, Input, Button } from 'antd';
 import { PostData } from '../database/Post';
 
@@ -14,6 +14,11 @@ const PostEdit: React.FC<PostEditProps> = ({ post, onSubmit }) => {
     onSubmit(values.title, values.content);
   };
 
+  // Set initial values when component is mounted
+  useEffect(() => {
+    form.setFieldsValue(post);
+  }, [post, form]);
+
   return (
     <Form
       form={form}
@@ -26,17 +31,21 @@ const PostEdit: React.FC<PostEditProps> = ({ post, onSubmit }) => {
         name="title"
         rules={[{ required: true, message: 'Please enter post title' }]}
       >
-        <Input />
+        <Input className="text_color" />
       </Form.Item>
       <Form.Item
         label="Content"
         name="content"
         rules={[{ required: true, message: 'Please enter post content' }]}
       >
-        <Input.TextArea />
+        <Input.TextArea className="text_color" />
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button
+          type="primary"
+          htmlType="submit"
+          className="bg_main py-3 px-4 fs-6 d-flex justify-content-center mx-auto"
+        >
           Update
         </Button>
       </Form.Item>

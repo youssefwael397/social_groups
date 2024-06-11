@@ -1,6 +1,7 @@
 import React from 'react';
 import { List, Button } from 'antd';
 import { PostData } from '../database/Post';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
 interface PostListProps {
   posts: PostData[];
@@ -10,25 +11,29 @@ interface PostListProps {
 
 const PostList: React.FC<PostListProps> = ({ posts, onEdit, onDelete }) => {
   return (
-    <List
+    <List className='group rounded-3 my-4 py-2 px-4'
       itemLayout="horizontal"
       dataSource={posts}
       renderItem={(post) => (
         <List.Item
           actions={[
             <Button key="edit" onClick={() => onEdit(post)}>
-              Edit
+              <EditOutlined />
             </Button>,
             <Button key="delete" onClick={() => onDelete(post.id)} danger>
-              Delete
+              <DeleteOutlined />
             </Button>,
           ]}
         >
+
           <List.Item.Meta
-            title={post.title}
-            description={`Created at: ${new Date(
-              post.createdAt
-            ).toLocaleString()} - ${post.content}`}
+            title={<p className='fs-5 main_color mb-0'>{post.title}</p>}
+            description={
+              <div>
+                <p>Created at: {new Date(post.createdAt).toLocaleString()}</p>
+                <p className='text-dark fs-6'>{post.content}</p>
+              </div>
+            }
           />
         </List.Item>
       )}

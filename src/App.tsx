@@ -16,8 +16,8 @@ const App: React.FC = () => {
               path="/"
               element={
                 <>
-                  <h1 className="text-center text-primary my-3">
-                    Group Management App
+                  <h1 className="text-center main_color my-3">
+                    Group Management Interface
                   </h1>
                   <GroupManagement />
                 </>
